@@ -508,6 +508,8 @@ async function avvia(radice) {
   let posa = storia && passi.length ? leggiPosa(passi[0].dataset.pose) : leggiPosa('az:35 el:14 d:.72 tilt:90 lift:.06');
   let attuale = { ...posa };
   const trascina = { yaw: 0, pitch: 0, attivo: false, x: 0, y: 0 };
+  const disegnato = { yaw: 0, pitch: 0 };
+  if (DEBUG && storia) window.__trascina = trascina;
   const largo = () => innerWidth > 860;
 
   function posaDaScroll() {
@@ -591,10 +593,14 @@ async function avvia(radice) {
         lift: 0.03 + 0.05 * fase, el: 14, d: 0.72, sx: 0, sy: 0 };
     }
     const k = ridotto || posaFissa ? 1 : 1 - Math.exp(-dt * 5);
-    const prima = { ...attuale, yaw: trascina.yaw, pitch: trascina.pitch };
+    // ⚠️ il confronto si fa con quello che è stato DISEGNATO l'ultima volta, non
+    // con l'inizio del ciclo: il trascinamento aggiorna yaw e pitch dentro
+    // l'evento del mouse, e confrontandoli qui non risultava mai cambiato niente
+    const prima = { ...attuale, yaw: disegnato.yaw, pitch: disegnato.pitch };
     attuale = mescola(attuale, posa, k);
     if (!trascina.attivo) { trascina.yaw *= 1 - dt * 0.8; trascina.pitch *= 1 - dt * 0.8; }
     let scarto = Math.abs(trascina.yaw - prima.yaw) + Math.abs(trascina.pitch - prima.pitch);
+    disegnato.yaw = trascina.yaw; disegnato.pitch = trascina.pitch;
     for (const x in attuale) scarto += Math.abs(attuale[x] - prima[x]);
     const cambiato = scarto > 1e-4 || !storia;
     // la camera si mette in posa SEMPRE (costa niente): al primo fotogramma la
@@ -663,6 +669,12 @@ async function apriEsplora() {
     controlli.autoRotate = !ridotto;
     controlli.autoRotateSpeed = 0.8;
     controlli.addEventListener('start', () => { controlli.autoRotate = false; });
+    // ⚠️ lo zoom con la rotella (e il pizzico) la libreria lo applica DENTRO
+    // l'evento, e il suo update() del fotogramma dopo risponde "niente di
+    // nuovo": senza questo la camera si spostava ma l'immagine restava ferma
+    // fino al tocco successivo. 'change' arriva per ogni movimento, da dove venga.
+    let cameraMossa = true;
+    controlli.addEventListener('change', () => { cameraMossa = true; });
     const iniziale = () => {
       const tv = Math.tan((S.camera.fov / 2) * RAD);
       const d = Math.max((S.raggio * 1.3) / tv, S.raggio / (0.7 * tv * S.camera.aspect));
@@ -730,8 +742,9 @@ async function apriEsplora() {
         etichetta.textContent = `${Math.round(stato.tilt)}°`;
         modo.textContent = hudTesto(stato.tilt);
       }
-      const camera = controlli.update();      // true finché la camera si muove (anche per inerzia)
-      S.disegna(mosso || camera || controlli.autoRotate);
+      controlli.update();                     // l'inerzia, che a sua volta emette 'change'
+      S.disegna(mosso || cameraMossa || controlli.autoRotate);
+      cameraMossa = false;
     })();
   } else {
     dialogo.showModal();

@@ -675,9 +675,20 @@ async function apriEsplora() {
     // fino al tocco successivo. 'change' arriva per ogni movimento, da dove venga.
     let cameraMossa = true;
     controlli.addEventListener('change', () => { cameraMossa = true; });
-    const iniziale = () => {
+    // la distanza a cui il drone sta tutto nello schermo: su un telefono in
+    // verticale è circa il doppio che su un PC, perché lo schermo è stretto
+    const distanza = () => {
       const tv = Math.tan((S.camera.fov / 2) * RAD);
-      const d = Math.max((S.raggio * 1.3) / tv, S.raggio / (0.7 * tv * S.camera.aspect));
+      return Math.max((S.raggio * 1.3) / tv, S.raggio / (0.7 * tv * S.camera.aspect));
+    };
+    // ⚠️ il limite dello zoom indietro segue lo schermo: fisso a 6 raggi, su
+    // telefono era MINORE della distanza iniziale, la libreria la tagliava e il
+    // drone non si poteva rimpicciolire
+    const limiti = () => { controlli.maxDistance = Math.max(S.raggio * 6, distanza() * 2.5); };
+    addEventListener('resize', limiti);
+    const iniziale = () => {
+      limiti();
+      const d = distanza();
       S.camera.position.set(d * 0.55, S.altezza + d * 0.32, -d * 0.78);
       controlli.target.set(0, S.altezza, 0);
       controlli.update();
@@ -701,7 +712,7 @@ async function apriEsplora() {
           fuori[f] = +((performance.now() - t) / n).toFixed(1);
         }
         S.camera.position.copy(controlli.target).addScaledVector(dir, d0);
-        return { ms_per_fotogramma: fuori, pixel: [S.renderer.domElement.width, S.renderer.domElement.height], rapporto: S.renderer.getPixelRatio() };
+        return { distanza_iniziale: +(d0 / S.raggio).toFixed(2), massimo: +(controlli.maxDistance / S.raggio).toFixed(2), ms_per_fotogramma: fuori, pixel: [S.renderer.domElement.width, S.renderer.domElement.height], rapporto: S.renderer.getPixelRatio() };
       };
       if (location.search.includes('bench')) setTimeout(() => { const r = window.__bench(); document.body.dataset.bench = JSON.stringify(r); navigator.sendBeacon('/_tempi', JSON.stringify({ bench: r, larghezza: innerWidth })); }, 1500);
     }

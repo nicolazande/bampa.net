@@ -144,3 +144,20 @@ document.querySelectorAll('[data-form]').forEach((form) => {
     msg.textContent = TL.aperto(posta);
   });
 });
+
+/* ---------------------------------------- 3D bloccato: mai una rotella infinita */
+// Gira senza la libreria 3D: se il modulo 3D non è partito (errore di rete,
+// browser vecchio, estensioni), dopo 15 s il caricamento diventa un messaggio.
+const TESTO_3D = {
+  it: ['Il modello 3D non si è caricato.', 'Riprova'],
+  en: ["The 3D model didn't load.", 'Try again'],
+  de: ['Das 3D-Modell wurde nicht geladen.', 'Erneut versuchen'],
+}[LINGUA] || ['Il modello 3D non si è caricato.', 'Riprova'];
+setTimeout(() => {
+  document.querySelectorAll('[data-ares-loader]:not(.is-done)').forEach((l) => {
+    const p = l.querySelector('[data-ares-progress]');
+    l.querySelector('.loader__ring')?.remove();
+    if (p) p.innerHTML = `${TESTO_3D[0]} <button type="button" class="btn btn--small btn--ghost">${TESTO_3D[1]}</button>`;
+    p?.querySelector('button')?.addEventListener('click', () => location.reload());
+  });
+}, 15000);

@@ -762,3 +762,4 @@ body.esplora-aperta { overflow: hidden; }
 /* su telefono il puntino resta in riga con il testo */
 .hub-hero .eyebrow { display: block; line-height: 1.6; }
 .hub-hero .eyebrow .dot { display: inline-block; margin-right: 8px; vertical-align: 1px; }
+.loader [data-ares-progress] { display: flex; flex-direction: column; align-items: center; gap: 12px; text-transform: none; letter-spacing: 0; font-family: var(--f-text); font-size: 14px; } .loader button { pointer-events: auto; }

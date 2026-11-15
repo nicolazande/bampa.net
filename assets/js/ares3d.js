@@ -22,9 +22,19 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const VERSIONE = document.documentElement.dataset.versione || '';
 // misura dei tempi di caricamento: ?tempi nell'indirizzo li scrive in console
 const DEBUG = location.search.includes('debug');
+if (DEBUG) {
+  // errori e avvisi (anche quelli degli shader) leggibili da fuori: window.__log
+  window.__log = [];
+  for (const k of ['error', 'warn']) {
+    const orig = console[k].bind(console);
+    console[k] = (...x) => { window.__log.push(k + ': ' + x.map(String).join(' ').slice(0, 3000)); orig(...x); };
+  }
+  addEventListener('error', (e) => window.__log.push('onerror: ' + e.message));
+  addEventListener('unhandledrejection', (e) => window.__log.push('promise: ' + (e.reason?.stack || e.reason)));
+}
 const T0 = performance.now();
 const tempi = { modulo: Math.round(T0) };
-const segna = (k) => { tempi[k] = Math.round(performance.now()); };
+const segna = (k) => { tempi[k] = Math.round(performance.now()); if (DEBUG) window.__tempi = tempi; };
 const MODELLO = new URL(`../3d/ares_mini.glb?v=${VERSIONE}`, import.meta.url).href;
 const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const RAD = Math.PI / 180;
@@ -381,7 +391,8 @@ async function creaScena(canvas, progresso, radiceErrore) {
   // gli shader si compilano qui, in parallelo dove il browser lo permette: senza,
   // il primo fotogramma bloccava la pagina mentre il modello era già "pronto"
   segna('scena');
-  try { await renderer.compileAsync(scena, camera); } catch (e) { /* browser vecchi: si compila al primo fotogramma */ }
+  // con un tempo massimo: se il browser non risponde, si compila al primo fotogramma
+  try { await Promise.race([renderer.compileAsync(scena, camera), new Promise((r) => setTimeout(r, 4000))]); } catch (e) { /* idem */ }
   segna('shader');
 
   // l'interno (struttura in legno, elettronica, servi) arriva dopo, e solo

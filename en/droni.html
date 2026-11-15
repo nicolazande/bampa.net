@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" data-versione="567a61afe4">
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drones — bampa · ARES, the autonomous tilt-rotor</title>
+  <meta name="description" content="ARES takes off vertically like a helicopter and flies like a plane. Designed from scratch, it is the first of a team of robots, in the air and on the ground, built to reach where nobody can today.">
+  <meta name="theme-color" content="#07090c">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://bampa.net/en/droni.html">
+  <link rel="alternate" hreflang="it" href="https://bampa.net/droni.html">
+  <link rel="alternate" hreflang="en" href="https://bampa.net/en/droni.html">
+  <link rel="alternate" hreflang="de" href="https://bampa.net/de/droni.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bampa.net/en/droni.html">
+  <meta property="og:title" content="Drones — bampa · ARES, the autonomous tilt-rotor">
+  <meta property="og:description" content="ARES takes off vertically like a helicopter and flies like a plane. Designed from scratch, it is the first of a team of robots, in the air and on the ground, built to reach where nobody can today.">
+  <meta property="og:image" content="https://bampa.net/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=567a61afe4">
+  <link rel="preload" href="../assets/3d/ares_mini.glb?v=567a61afe4" as="fetch" type="model/gltf-binary" crossorigin>
+  <link rel="modulepreload" href="../assets/vendor/three.module.min.js">
+  <link rel="modulepreload" href="../assets/js/ares3d.js?v=567a61afe4">
+  <script type="importmap">
+    { "imports": {
+        "three": "../assets/vendor/three.module.min.js",
+        "three/addons/": "../assets/vendor/addons/"
+    } }
+  </script>
+  <script type="module" src="../assets/js/main.js?v=567a61afe4"></script>
+  <script type="module" src="../assets/js/ares3d.js?v=567a61afe4"></script>
+  <script type="module" src="../assets/js/missione.js?v=567a61afe4"></script>
+</head>
+<body class="unita-droni">
+  <a class="skip" href="#contenuto">Skip to content</a>
+  <header class="nav" data-nav>
+    <div class="nav__inner">
+      <a class="logo" href="index.html" aria-label="bampa, home page">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c7 0 12.5 5.3 12.5 12.4S23 28.5 16 28.5 3.5 23 3.5 16 9 3.5 16 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.6 8.2c4.6.2 7.6 3.6 7.4 7.9-.2 4.5-3.7 7.6-8.1 7.5-4.3-.1-7.6-3.4-7.5-7.7.1-4.6 3.6-7.9 8.2-7.7Z" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".7"/><path d="M16.4 12.6c2 .1 3.5 1.6 3.4 3.6-.1 2-1.7 3.4-3.7 3.3-1.9-.1-3.4-1.6-3.3-3.5.1-2 1.6-3.5 3.6-3.4Z" fill="currentColor"/></svg>
+
+        <span class="logo__word">bampa</span>
+      </a>
+      <nav class="nav__links" aria-label="Sections" data-nav-links>
+        <a href="droni.html" class="is-current" aria-current="page"><span class="nav__dot nav__dot--droni"></span>Drones</a>
+        <a href="ai.html"><span class="nav__dot nav__dot--ai"></span>Local AI</a>
+        <a href="index.html#su-misura">Custom</a>
+        <a href="investitori.html">Investors</a>
+        <span class="lang" aria-label="Lingua"><a href="../droni.html" hreflang="it" lang="it">it</a><a href="../en/droni.html" hreflang="en" lang="en" aria-current="true">en</a><a href="../de/droni.html" hreflang="de" lang="de">de</a></span>
+        <a class="btn btn--small btn--accent" href="#contatti">Let's talk</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenuto">
+
+    <section class="story" data-ares="storia">
+      <div class="story__stage">
+        <canvas class="story__topo" data-topo aria-hidden="true"></canvas>
+        <canvas class="story__canvas" data-ares-canvas
+                aria-label="3D model of ARES MINI, the tilt-rotor drone. Drag to rotate."></canvas>
+        <div class="hud" aria-hidden="true">
+          <div class="hud__row"><span class="hud__k">model</span><span class="hud__v">ARES MINI</span></div>
+          <div class="hud__row"><span class="hud__k">mode</span><span class="hud__v" data-hud-modo>HOVER</span></div>
+          <div class="hud__row"><span class="hud__k">rotors</span><span class="hud__v"><span data-hud-tilt>90</span>°</span></div>
+          <div class="hud__bar"><span data-hud-bar></span></div>
+        </div>
+        <div class="loader" data-ares-loader><div class="loader__ring"></div><span data-ares-progress>Loading the model…</span></div>
+        <button class="story__explore btn btn--small btn--ghost" type="button" data-ares-esplora>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg> Explore in 3D</button>
+        <p class="story__hint" data-ares-hint>Drag to rotate</p>
+      </div>
+
+      <div class="story__steps">
+        <article class="step step--hero is-active" data-pose="az:38 el:16 d:1.25 tilt:90 xray:0 lift:.07 sx:.25 sy:0">
+          <p class="eyebrow"><span class="dot"></span> bampa Drones · ARES</p>
+          <h1 class="hero__title">Takes off on its own.<br><span class="grad">Flies far.</span></h1>
+          <p class="hero__lead">ARES rises vertically like a helicopter and carries on like a plane. We designed
+            it from scratch, and it is the first of a team of robots, in the air and on the ground, built to
+            reach where nobody can today.</p>
+          <div class="hero__cta">
+            <a class="btn btn--accent" href="#velivoli">Discover ARES <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#visione">The vision</a>
+          </div>
+          <p class="hero__scroll" aria-hidden="true"><span></span> scroll: watch the transition</p>
+        </article>
+
+        <article class="step" data-pose="az:20 el:4 d:1.1 tilt:90 xray:0 lift:.1 sx:.24 sy:0">
+          <p class="step__num">01 — Take-off</p>
+          <h2>It rises like a helicopter.</h2>
+          <p>A patch of grass is all it needs. No runway, no launcher, no net to catch it.</p>
+        </article>
+
+        <article class="step" data-pose="az:100 el:6 d:1.05 tilt:35 xray:0 lift:.1 sx:.24 sy:0">
+          <p class="step__num">02 — Transition</p>
+          <h2>Then it becomes a plane. Smoothly.</h2>
+          <p>Many VTOLs switch from vertical to forward flight in one abrupt step: lift motors off, pusher
+            on. Not ARES. Its rotors tilt continuously, thrust shifts gradually from lifting to pulling, and
+            the wing takes over the weight bit by bit.</p>
+        </article>
+
+        <article class="step" data-pose="az:145 el:32 d:1.0 tilt:0 xray:1 lift:.04 sx:.24 sy:0">
+          <p class="step__num">03 — Inside</p>
+          <h2>A real brain.</h2>
+          <p>Autopilot, onboard computer and a camera that reads the ground: ARES knows where it is even when
+            there's no GPS.</p>
+        </article>
+
+        <article class="step" data-pose="az:200 el:70 d:1.2 tilt:0 xray:0 lift:0 sx:.24 sy:0">
+          <p class="step__num">04 — Transport</p>
+          <h2>Seven pieces. One carry-on.</h2>
+          <p>It comes apart with a single key and travels with you.</p>
+          <p class="step__note">What you see is the real design model, not a fantasy render.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="velivoli">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> The aircraft</p>
+          <h2 class="section__title">The <span class="grad">ARES</span> family.</h2>
+          <p class="section__lead">It starts with the smallest one, which carries the same intelligence as the largest.</p>
+        </header>
+        <div class="products">
+          <article class="product" data-reveal>
+            <div class="product__top"><span class="tag tag--live"><span class="dot"></span> Prototype ready</span><span class="product__kicker">Demonstrator</span></div>
+            <h3 class="product__name">ARES MINI</h3>
+            <p class="product__pitch">The most compact: it fits in a carry-on and is assembled on site. The prototype is ready and available on request.</p>
+            <dl class="specs">
+              <div><dt>Span</dt><dd>55 cm</dd></div>
+              <div><dt>Take-off</dt><dd>Vertical, anywhere</dd></div>
+              <div><dt>Transport</dt><dd>7 pieces, one bag</dd></div>
+            </dl>
+            <a class="btn btn--accent btn--block" href="#contatti" data-interesse="droni">Request the prototype</a>
+          </article>
+          <article class="product product--feature" data-reveal>
+            <div class="product__top"><span class="tag"><span class="dot"></span> In development</span><span class="product__kicker">For real work</span></div>
+            <h3 class="product__name">ARES</h3>
+            <p class="product__pitch">The big brother: carries a real payload and stays up for a long time, even at altitude.</p>
+            <dl class="specs">
+              <div><dt>Span</dt><dd>1.35 m</dd></div>
+              <div><dt>Payload</dt><dd>1 kg</dd></div>
+              <div><dt>Endurance</dt><dd>80 min <small>target</small></dd></div>
+            </dl>
+            <a class="btn btn--ghost btn--block" href="#contatti" data-interesse="droni">Tell us your use case</a>
+          </article>
+          <article class="product product--custom" data-reveal>
+            <div class="product__top"><span class="tag tag--cool"><span class="dot"></span> On request</span><span class="product__kicker">Custom</span></div>
+            <h3 class="product__name">Your mission</h3>
+            <p class="product__pitch">Rescue, surveillance, inspection, agriculture: we start from the problem and
+              build the system around it.</p>
+            <a class="btn btn--ghost btn--block" href="#contatti" data-interesse="robotica">Tell us the mission</a>
+          </article>
+        </div>
+        <p class="footnote" data-reveal>Design figures, not yet confirmed in flight. Full technical dossier on request, under a non-disclosure agreement.</p>
+      </div>
+    </section>
+
+    <section class="section section--mission" id="visione">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> The vision</p>
+          <h2 class="section__title">The first <span class="grad">of a team</span>.</h2>
+          <p class="section__lead">The next step is robots working together, in the air and on the ground, without a
+            pilot for every machine. Here's what they'll be able to do.</p>
+          <ul class="chips-static chips-static--head">
+            <li>Mountain rescue</li><li>Emergencies</li><li>Sites to protect</li><li>Remote infrastructure</li>
+          </ul>
+        </header>
+
+        <div class="mission" data-missione data-reveal>
+          <div class="mission__tabs" role="tablist" aria-label="Scenarios">
+            <button role="tab" data-scenario="squadra" aria-selected="true"><span>01</span>Air and ground</button>
+            <button role="tab" data-scenario="rilevamento" aria-selected="false"><span>02</span>Other drones</button>
+            <button role="tab" data-scenario="zona" aria-selected="false"><span>03</span>A safe zone</button>
+            <button role="tab" data-scenario="gnss" aria-selected="false"><span>04</span>No GPS</button>
+          </div>
+          <div class="mission__body">
+            <div class="mission__map">
+              <canvas data-missione-canvas aria-label="Animated map of the selected scenario"></canvas>
+              <div class="mission__legend" data-missione-legenda></div>
+              <div class="mission__readout" data-missione-lettura></div>
+            </div>
+            <div class="mission__panels">
+              <div class="mission__panel" data-pannello="squadra">
+                <span class="tag"><span class="dot"></span> Next step</span>
+                <h3>What flies sees. What's on the ground acts.</h3>
+                <p>ARES explores and draws the map; ground robots use it to reach the points it found. And when
+                  they're out of range, it becomes their radio relay.</p>
+              </div>
+              <div class="mission__panel" data-pannello="rilevamento" hidden>
+                <span class="tag"><span class="dot"></span> Next step</span>
+                <h3>It hears other drones.</h3>
+                <p>It listens to the radios of nearby drones and, with several listeners, works out where they are.
+                  Without transmitting anything.</p>
+              </div>
+              <div class="mission__panel" data-pannello="zona" hidden>
+                <span class="tag"><span class="dot"></span> Next step</span>
+                <h3>A protected zone, in layers.</h3>
+                <p>Ground sensors and patrol drones together: whoever enters is detected, recognised and reported.</p>
+                <p class="mission__legal">Detecting and reporting, yes. Intervening is up to those authorised by law.</p>
+              </div>
+              <div class="mission__panel" data-pannello="gnss" hidden>
+                <span class="tag tag--live"><span class="dot"></span> Proven in simulation</span>
+                <h3>Even without GPS.</h3>
+                <p>In a deep valley or under jamming the signal disappears. ARES carries on, recognising the ground below.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--road">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> Where we are</p>
+          <h2 class="section__title">Milestones.</h2>
+        </header>
+        <ol class="road">
+          <li class="road__item" data-stato="fatto" data-reveal><span>Done</span><h3>Design</h3><p>Computed and verified part by part.</p></li>
+          <li class="road__item" data-stato="fatto" data-reveal><span>Done</span><h3>Digital twin</h3><p>A full mission in simulation, over real terrain.</p></li>
+          <li class="road__item" data-stato="ora" data-reveal><span>Now</span><h3>Prototype ready</h3><p>ARES MINI is available on request.</p></li>
+          <li class="road__item" data-stato="dopo" data-reveal><span>Next</span><h3>First flight</h3><p>Take-off, transition, cruise.</p></li>
+          <li class="road__item" data-stato="dopo" data-reveal><span>Next</span><h3>The team</h3><p>ARES and the ground robots, together.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contatti">
+      <div class="wrap contact">
+        <div class="contact__intro" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> Contact</p>
+          <h2 class="section__title">Let's talk.</h2>
+          <p class="section__lead">A robot, an AI server for your company or a project that doesn't
+            have a name yet: drop us a line and we'll reply within one working day.</p>
+          <a class="contact__mail" href="mailto:info@bampa.it" data-mail>info@bampa.it</a>
+          <p class="contact__sedi">Based in <strong>Bolzano</strong> and <strong>Auronzo di Cadore</strong>, Italy.</p>
+          <p class="contact__privacy">The form opens your email app: your data never passes through
+            third-party services. <a href="privacy.html">Privacy</a></p>
+        </div>
+        <form class="form" data-form data-reveal novalidate>
+          <div class="form__row">
+            <label>Name<input name="nome" autocomplete="name" required></label>
+            <label>Company <small>(optional)</small><input name="azienda" autocomplete="organization"></label>
+          </div>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <fieldset class="chips">
+            <legend>Interested in</legend>
+            <label><input type="radio" name="interesse" value="Drones" data-chiave="droni"><span>Drones</span></label>
+            <label><input type="radio" name="interesse" value="Robotics and security" data-chiave="robotica"><span>Robotics &amp; security</span></label>
+            <label><input type="radio" name="interesse" value="Local AI" data-chiave="ai"><span>Local AI</span></label>
+            <label><input type="radio" name="interesse" value="Custom project" data-chiave="misura"><span>Custom project</span></label>
+            <label><input type="radio" name="interesse" value="Investors" data-chiave="investitori"><span>Investors</span></label>
+          </fieldset>
+          <label>Message<textarea name="messaggio" rows="5" required placeholder="What would you like to do, and by when?"></textarea></label>
+          <button class="btn btn--accent btn--block" type="submit">Send <span aria-hidden="true">→</span></button>
+          <p class="form__msg" data-form-msg role="status"></p>
+        </form>
+      </div>
+    </section>
+
+
+  </main>
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c7 0 12.5 5.3 12.5 12.4S23 28.5 16 28.5 3.5 23 3.5 16 9 3.5 16 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.6 8.2c4.6.2 7.6 3.6 7.4 7.9-.2 4.5-3.7 7.6-8.1 7.5-4.3-.1-7.6-3.4-7.5-7.7.1-4.6 3.6-7.9 8.2-7.7Z" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".7"/><path d="M16.4 12.6c2 .1 3.5 1.6 3.4 3.6-.1 2-1.7 3.4-3.7 3.3-1.9-.1-3.4-1.6-3.3-3.5.1-2 1.6-3.5 3.6-3.4Z" fill="currentColor"/></svg>
+<span class="logo__word">bampa</span></a>
+      <nav class="footer__links" aria-label="Pages">
+        <a href="droni.html">Drones</a>
+        <a href="ai.html">Local AI</a>
+        <a href="index.html#su-misura">Custom</a>
+        <a href="investitori.html">Investors</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="footer__legal">© 2026 bampa · Bolzano · Auronzo di Cadore · <a href="mailto:info@bampa.it">info@bampa.it</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

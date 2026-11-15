@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en" data-versione="567a61afe4">
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local AI — bampa · multi-GPU servers for large models on premises</title>
+  <meta name="description" content="AI servers on the EPYC platform with several GPUs: top-tier open-source models for the whole company, on your documents and your code, without a single byte leaving. Use cases, benefits and sizing.">
+  <meta name="theme-color" content="#07090c">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://bampa.net/en/ai.html">
+  <link rel="alternate" hreflang="it" href="https://bampa.net/ai.html">
+  <link rel="alternate" hreflang="en" href="https://bampa.net/en/ai.html">
+  <link rel="alternate" hreflang="de" href="https://bampa.net/de/ai.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bampa.net/en/ai.html">
+  <meta property="og:title" content="Local AI — bampa · multi-GPU servers for large models on premises">
+  <meta property="og:description" content="AI servers on the EPYC platform with several GPUs: top-tier open-source models for the whole company, on your documents and your code, without a single byte leaving. Use cases, benefits and sizing.">
+  <meta property="og:image" content="https://bampa.net/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=567a61afe4">
+
+  <script type="importmap">
+    { "imports": {
+        "three": "../assets/vendor/three.module.min.js",
+        "three/addons/": "../assets/vendor/addons/"
+    } }
+  </script>
+  <script type="module" src="../assets/js/main.js?v=567a61afe4"></script>
+  <script type="module" src="../assets/js/dimensionatore.js?v=567a61afe4"></script>
+</head>
+<body class="unita-ai">
+  <a class="skip" href="#contenuto">Skip to content</a>
+  <header class="nav" data-nav>
+    <div class="nav__inner">
+      <a class="logo" href="index.html" aria-label="bampa, home page">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c7 0 12.5 5.3 12.5 12.4S23 28.5 16 28.5 3.5 23 3.5 16 9 3.5 16 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.6 8.2c4.6.2 7.6 3.6 7.4 7.9-.2 4.5-3.7 7.6-8.1 7.5-4.3-.1-7.6-3.4-7.5-7.7.1-4.6 3.6-7.9 8.2-7.7Z" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".7"/><path d="M16.4 12.6c2 .1 3.5 1.6 3.4 3.6-.1 2-1.7 3.4-3.7 3.3-1.9-.1-3.4-1.6-3.3-3.5.1-2 1.6-3.5 3.6-3.4Z" fill="currentColor"/></svg>
+
+        <span class="logo__word">bampa</span>
+      </a>
+      <nav class="nav__links" aria-label="Sections" data-nav-links>
+        <a href="droni.html"><span class="nav__dot nav__dot--droni"></span>Drones</a>
+        <a href="ai.html" class="is-current" aria-current="page"><span class="nav__dot nav__dot--ai"></span>Local AI</a>
+        <a href="index.html#su-misura">Custom</a>
+        <a href="investitori.html">Investors</a>
+        <span class="lang" aria-label="Lingua"><a href="../ai.html" hreflang="it" lang="it">it</a><a href="../en/ai.html" hreflang="en" lang="en" aria-current="true">en</a><a href="../de/ai.html" hreflang="de" lang="de">de</a></span>
+        <a class="btn btn--small btn--accent" href="#contatti">Let's talk</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenuto">
+
+    <section class="ai-hero">
+      <div class="wrap ai-hero__inner">
+        <div class="ai-hero__text">
+          <p class="eyebrow eyebrow--cool" data-reveal><span class="dot"></span> bampa AI · on premises</p>
+          <h1 class="hero__title" data-reveal style="--d:.06s">Large models.<br><span class="grad grad--cool">In your server room.</span></h1>
+          <p class="hero__lead" data-reveal style="--d:.12s">We design and install AI servers that run top-tier
+            open-source models for the whole company, on your documents, your code and your projects. No
+            pay-per-use subscriptions, no data leaving the building.</p>
+          <div class="hero__cta" data-reveal style="--d:.18s">
+            <a class="btn btn--cool" href="#dimensiona">Size your server <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#casi">What it's for</a>
+          </div>
+        </div>
+        <div class="ai-hero__visual" data-reveal style="--d:.2s"><svg class="server" viewBox="0 0 520 380" role="img" aria-label="Diagram: several users connected to a server with an EPYC processor, eight memory channels and several GPUs">
+  <defs>
+    <linearGradient id="sv-gpu" x1="0" x2="1"><stop offset="0" stop-color="#1b2633"/><stop offset="1" stop-color="#121a24"/></linearGradient>
+    <linearGradient id="sv-cool" x1="0" x2="1"><stop offset="0" stop-color="#5cd3ff"/><stop offset="1" stop-color="#9b8cff"/></linearGradient>
+    <radialGradient id="sv-glow"><stop offset="0" stop-color="#5cd3ff" stop-opacity=".35"/><stop offset="1" stop-color="#5cd3ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g class="server__users">
+    <g transform="translate(34 70)"><circle r="13"/><path d="M-9 30a9 9 0 0 1 18 0"/></g>
+    <g transform="translate(34 150)"><circle r="13"/><path d="M-9 30a9 9 0 0 1 18 0"/></g>
+    <g transform="translate(34 230)"><circle r="13"/><path d="M-9 30a9 9 0 0 1 18 0"/></g>
+    <g transform="translate(34 310)"><circle r="13"/><path d="M-9 30a9 9 0 0 1 18 0"/></g>
+  </g>
+  <g class="server__links">
+    <path d="M56 84 C 100 84, 100 190, 128 190"/><path d="M56 164 C 100 164, 100 190, 128 190"/>
+    <path d="M56 244 C 100 244, 100 190, 128 190"/><path d="M56 324 C 100 324, 100 190, 128 190"/>
+  </g>
+  <rect class="server__case" x="128" y="20" width="370" height="340" rx="18"/>
+  <ellipse cx="320" cy="190" rx="190" ry="160" fill="url(#sv-glow)"/>
+  <text class="server__label" x="148" y="48">bampa server · on premises</text>
+  <g class="server__ram">
+    <rect x="160" y="70" width="10" height="70" rx="2"/><rect x="176" y="70" width="10" height="70" rx="2"/>
+    <rect x="192" y="70" width="10" height="70" rx="2"/><rect x="208" y="70" width="10" height="70" rx="2"/>
+    <rect x="300" y="70" width="10" height="70" rx="2"/><rect x="316" y="70" width="10" height="70" rx="2"/>
+    <rect x="332" y="70" width="10" height="70" rx="2"/><rect x="348" y="70" width="10" height="70" rx="2"/>
+  </g>
+  <g class="server__bus">
+    <path d="M218 105 H234"/><path d="M284 105 H300"/>
+  </g>
+  <rect class="server__cpu" x="234" y="76" width="50" height="58" rx="6"/>
+  <text class="server__chip" x="259" y="110" text-anchor="middle">EPYC</text>
+  <text class="server__small" x="259" y="160" text-anchor="middle">8 channels · ~205 GB/s</text>
+  <g class="server__gpus">
+    <g transform="translate(160 186)"><rect width="318" height="44" rx="8" fill="url(#sv-gpu)"/><circle cx="40" cy="22" r="14"/><circle cx="86" cy="22" r="14"/><rect class="server__vram" x="124" y="14" width="150" height="16" rx="4"/><text x="300" y="27" text-anchor="end">GPU</text></g>
+    <g transform="translate(160 240)"><rect width="318" height="44" rx="8" fill="url(#sv-gpu)"/><circle cx="40" cy="22" r="14"/><circle cx="86" cy="22" r="14"/><rect class="server__vram" x="124" y="14" width="150" height="16" rx="4"/><text x="300" y="27" text-anchor="end">GPU</text></g>
+    <g transform="translate(160 294)" class="server__gpu--plus"><rect width="318" height="44" rx="8"/><text x="159" y="27" text-anchor="middle">+ GPU when you need it</text></g>
+  </g>
+  <path class="server__flow" d="M259 134 V186"/>
+</svg>
+</div>
+      </div>
+      <div class="wrap">
+        <dl class="kpis" data-reveal>
+          <div><dt>bytes of data leaving the company</dt><dd>0</dd></div>
+          <div><dt>people served at once by a single server</dt><dd>60</dd></div>
+          <div><dt>correct answers with the source, guaranteed in the field trial</dt><dd>16/20</dd></div>
+          <div><dt>always available, no pay-per-use costs</dt><dd>24/7</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section section--ai" id="casi">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> Use cases</p>
+          <h2 class="section__title">What you can do with it,<br><span class="grad grad--cool">starting Monday morning.</span></h2>
+        </header>
+        <div class="ai-grid">
+          <div class="chat" data-reveal data-chat>
+            <div class="chat__bar">
+              <span class="chat__dots"><i></i><i></i><i></i></span>
+              <span class="chat__title">bampa · internal server</span>
+              <span class="chat__net"><span class="dot"></span> internet: disconnected</span>
+            </div>
+            <div class="chat__body">
+              <div class="msg msg--user" data-chat-q>What's the tightening torque for the spindle screws on the P200?</div>
+              <div class="msg msg--think" data-chat-think><span></span> reading 3 internal documents…</div>
+              <div class="msg msg--bot" data-chat-a>
+                <p data-chat-text>For the P200 the specified torque is <strong>38 N·m</strong>, crosswise in two passes: first at 50%, then at full value. Since revision 4 this also applies to spindles with an HSK interface.</p>
+                <div class="cites" data-chat-cites>
+                  <span class="cite">Manual_P200_rev4.pdf · p. 112</span>
+                  <span class="cite">PQ-07 Torques.docx · §3.2</span>
+                </div>
+              </div>
+            </div>
+            <p class="chat__caption">Illustrative example: every answer cites the document and the page.</p>
+          </div>
+          <ul class="usecases">
+            <li data-reveal><h3>Company know-how</h3><p>Manuals, procedures, specifications and standards you can query in plain language, with the source cited.</p></li>
+            <li data-reveal><h3>Software development</h3><p>An assistant on your private code: reviews, tests, documentation, legacy code to explain and migrate.</p></li>
+            <li data-reveal><h3>CAD design</h3><p>The model drives CAD through deterministic tools: parametric parts, assemblies, bills of materials, dimensional checks.</p></li>
+            <li data-reveal><h3>Electronics and PCBs</h3><p>Schematics, netlists, footprints, routing rules, reading DRC and ERC errors, normalised BOMs.</p></li>
+            <li data-reveal><h3>Documents and data</h3><p>Summaries, version comparisons, extraction of tables, clauses and parameters from thousands of PDFs.</p></li>
+            <li data-reveal><h3>Tenders and quotes</h3><p>Reading tenders, checking requirements, a first draft of the quote on your own templates.</p></li>
+            <li data-reveal><h3>Quality and procedures</h3><p>Work instructions always at hand, consistency checks across documents, audit support.</p></li>
+            <li data-reveal><h3>Training and support</h3><p>The expert colleague available to new hires and internal help desks, around the clock.</p></li>
+            <li data-reveal><h3>Meetings and translation</h3><p>Transcripts, minutes and technical translation, without recordings shipped to outside servers.</p></li>
+            <li data-reveal><h3>Agents and automation</h3><p>Workflows that read, check and report on their own, with permissions and a log of every action.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--ai" id="perche">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> Why local</p>
+          <h2 class="section__title">Your know-how<br><span class="grad grad--cool">works for you, and stays yours.</span></h2>
+          <p class="section__lead">The cloud is convenient until it comes to manuals, drawings, code, quotes and
+            contracts. For subcontractors, medical, defence or anyone under NDA, that's where the conversation
+            ends. On premises, it starts again.</p>
+        </header>
+        <ul class="benefits">
+          <li data-reveal><b>01</b><h3>Total confidentiality</h3><p>Documents, conversations and code never leave the company network. It works with the internet cable unplugged.</p></li>
+          <li data-reveal><b>02</b><h3>Know-how stays in-house</h3><p>Forty years of procedures, solutions and tricks of the trade become searchable, even after the people who know them retire.</p></li>
+          <li data-reveal><b>03</b><h3>Predictable costs</h3><p>No charge per generated word: the hardware is depreciated, and the more you use it the better it pays.</p></li>
+          <li data-reveal><b>04</b><h3>No vendor lock-in</h3><p>Interchangeable open-source models: when a better one comes out, you switch with one line.</p></li>
+          <li data-reveal><b>05</b><h3>The whole company at once</h3><p>Dozens of people at the same time, with per-department permissions and a log of who saw what.</p></li>
+          <li data-reveal><b>06</b><h3>Simpler compliance</h3><p>GDPR, trade secrets, customer clauses: if the data never leaves, half the questions disappear.</p></li>
+          <li data-reveal><b>07</b><h3>Built into your tools</h3><p>ERP, archive, code editors, CAD and EDA, through standard interfaces (API and MCP).</p></li>
+          <li data-reveal><b>08</b><h3>Always available</h3><p>No usage caps, no queues, no service changing its terms overnight.</p></li>
+          <li data-reveal><b>09</b><h3>Tailored to you</h3><p>The model learns your vocabulary, your abbreviations and the way you write procedures.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--arch" id="architettura">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> The architecture</p>
+          <h2 class="section__title">EPYC plus several GPUs:<br><span class="grad grad--cool">the best of both worlds.</span></h2>
+          <p class="section__lead">A large model isn't sized by the power of the graphics card, but by memory: how
+            much there is and how fast it is. That's why we combine GPU memory with the RAM of an 8-channel
+            server processor.</p>
+        </header>
+        <div class="arch">
+          <article class="arch__card" data-reveal>
+            <span class="arch__k">GPU</span><h3>Fast video memory</h3>
+            <p>This holds the most-used layers of the model and the users' context. More GPUs mean more memory
+              and more people served at once, each with their own space.</p>
+          </article>
+          <article class="arch__card" data-reveal>
+            <span class="arch__k">EPYC · 8 channels</span><h3>Large server RAM</h3>
+            <p>Hundreds of GB of error-correcting memory for models that don't fit in the GPUs, long contexts,
+              document indexes and always-on agents.</p>
+          </article>
+          <article class="arch__card" data-reveal>
+            <span class="arch__k">Platform</span><h3>Grows with you</h3>
+            <p>RAM, GPUs and storage are added one at a time. Start with what you need today and expand when
+              usage calls for it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sizer" id="dimensiona">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> Try sizing it</p>
+          <h2 class="section__title">How much server do you need?</h2>
+          <p class="section__lead">Pick the model, how many people use it at once and how much text they work on
+            each time. The figure is indicative: real sizing is done on your own cases.</p>
+        </header>
+        <div class="sizer" data-dimensionatore data-reveal>
+          <form class="sizer__in">
+            <fieldset class="sizer__models">
+              <legend>The model</legend>
+              <label><input type="radio" name="modello" value="8" data-pesi="5" data-kv=".13"><span><b>7–8B</b><small>light assistant, code completion</small></span></label>
+              <label><input type="radio" name="modello" value="32" data-pesi="20" data-kv=".25" checked><span><b>14–32B</b><small>documents, serious coding, daily use</small></span></label>
+              <label><input type="radio" name="modello" value="70" data-pesi="42" data-kv=".33"><span><b>70B</b><small>solid reasoning, long documents</small></span></label>
+              <label><input type="radio" name="modello" value="120" data-pesi="75" data-kv=".2"><span><b>120–140B</b><small>advanced analysis, planning</small></span></label>
+              <label><input type="radio" name="modello" value="400" data-pesi="225" data-kv=".25"><span><b>~400B MoE</b><small>the very top, for labs and research</small></span></label>
+            </fieldset>
+            <label class="sizer__range">Concurrent users <output data-out-utenti>8</output>
+              <input type="range" name="utenti" min="1" max="60" value="8"></label>
+            <label class="sizer__range">Text per request <output data-out-contesto>16k tokens</output>
+              <input type="range" name="contesto" min="0" max="4" value="1" step="1"></label>
+          </form>
+          <div class="sizer__out" aria-live="polite">
+            <div class="sizer__mem">
+              <p class="sizer__k">Memory needed</p>
+              <p class="sizer__big"><span data-tot>0</span> <small>GB</small></p>
+              <div class="sizer__stack"><i class="pesi" data-bar-pesi></i><i class="kv" data-bar-kv></i></div>
+              <p class="sizer__leg"><span class="pesi"></span> model <b data-pesi>0</b> GB · <span class="kv"></span> user context <b data-kv>0</b> GB</p>
+            </div>
+            <div class="sizer__cfg">
+              <p class="sizer__k">Indicative configuration</p>
+              <p class="sizer__name" data-cfg-nome>—</p>
+              <div class="sizer__fit">
+                <div><span>VRAM</span><div class="sizer__track"><i data-fit-vram></i></div><b data-cfg-vram>—</b></div>
+                <div><span>RAM</span><div class="sizer__track"><i data-fit-ram></i></div><b data-cfg-ram>—</b></div>
+              </div>
+              <p class="sizer__verdict" data-cfg-verdetto></p>
+              <a class="btn btn--cool btn--block" href="#contatti" data-interesse="ai" data-cfg-cta>Ask for a real sizing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--hybrid">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> The two-model workflow</p>
+          <h2 class="section__title">The cloud designs the method.<br><span class="grad grad--cool">The local model does the work.</span></h2>
+          <p class="section__lead">When you need the most capable model on the market, use it only to invent the
+            procedure, on a non-confidential example. Then the local model applies it to hundreds of real
+            files that never leave.</p>
+        </header>
+        <ol class="flow" data-reveal>
+          <li><span class="flow__who">Cloud</span><h3>Discovery</h3><p>understands the problem on a clean example</p></li>
+          <li><span class="flow__who">Cloud</span><h3>Formalisation</h3><p>writes rules, tools, examples and tests</p></li>
+          <li class="flow__local"><span class="flow__who">Local</span><h3>Execution</h3><p>applies the procedure to all your data</p></li>
+          <li class="flow__local"><span class="flow__who">Local</span><h3>Verification</h3><p>checks format, consistency and errors</p></li>
+          <li><span class="flow__who">Cloud, if needed</span><h3>Hard cases</h3><p>only the few ambiguous cases, anonymised</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--ai">
+      <div class="wrap">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow eyebrow--cool"><span class="dot"></span> How to start</p>
+          <h2 class="section__title">Small, and measured.</h2>
+        </header>
+        <ol class="steps-line">
+          <li data-reveal><span>1</span><h4>Assessment</h4><p>One or two days on site: documents, use cases, sizing, comparison with the cloud. You get a document, not a promise.</p><em>from €1,500</em></li>
+          <li data-reveal><span>2</span><h4>Field trial</h4><p>Two weeks on real data with 5–10 users. <strong>At least 16 correct answers out of 20, with the source: otherwise we refund half.</strong></p><em>from €3,500</em></li>
+          <li data-reveal><span>3</span><h4>Server and installation</h4><p>Sized hardware, models, archive, permissions, backup, two-level training.</p><em>on quotation</em></li>
+          <li data-reveal><span>4</span><h4>Support</h4><p>New models as they come out, new documents, monitoring. The system improves while you use it.</p><em>monthly fee</em></li>
+        </ol>
+        <p class="footnote" data-reveal>Indicative prices, excluding VAT. Technical documentation and reference architecture on request, under a non-disclosure agreement.</p>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contatti">
+      <div class="wrap contact">
+        <div class="contact__intro" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> Contact</p>
+          <h2 class="section__title">Let's talk.</h2>
+          <p class="section__lead">A robot, an AI server for your company or a project that doesn't
+            have a name yet: drop us a line and we'll reply within one working day.</p>
+          <a class="contact__mail" href="mailto:info@bampa.it" data-mail>info@bampa.it</a>
+          <p class="contact__sedi">Based in <strong>Bolzano</strong> and <strong>Auronzo di Cadore</strong>, Italy.</p>
+          <p class="contact__privacy">The form opens your email app: your data never passes through
+            third-party services. <a href="privacy.html">Privacy</a></p>
+        </div>
+        <form class="form" data-form data-reveal novalidate>
+          <div class="form__row">
+            <label>Name<input name="nome" autocomplete="name" required></label>
+            <label>Company <small>(optional)</small><input name="azienda" autocomplete="organization"></label>
+          </div>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <fieldset class="chips">
+            <legend>Interested in</legend>
+            <label><input type="radio" name="interesse" value="Drones" data-chiave="droni"><span>Drones</span></label>
+            <label><input type="radio" name="interesse" value="Robotics and security" data-chiave="robotica"><span>Robotics &amp; security</span></label>
+            <label><input type="radio" name="interesse" value="Local AI" data-chiave="ai"><span>Local AI</span></label>
+            <label><input type="radio" name="interesse" value="Custom project" data-chiave="misura"><span>Custom project</span></label>
+            <label><input type="radio" name="interesse" value="Investors" data-chiave="investitori"><span>Investors</span></label>
+          </fieldset>
+          <label>Message<textarea name="messaggio" rows="5" required placeholder="What would you like to do, and by when?"></textarea></label>
+          <button class="btn btn--accent btn--block" type="submit">Send <span aria-hidden="true">→</span></button>
+          <p class="form__msg" data-form-msg role="status"></p>
+        </form>
+      </div>
+    </section>
+
+
+  </main>
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5c7 0 12.5 5.3 12.5 12.4S23 28.5 16 28.5 3.5 23 3.5 16 9 3.5 16 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.6 8.2c4.6.2 7.6 3.6 7.4 7.9-.2 4.5-3.7 7.6-8.1 7.5-4.3-.1-7.6-3.4-7.5-7.7.1-4.6 3.6-7.9 8.2-7.7Z" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".7"/><path d="M16.4 12.6c2 .1 3.5 1.6 3.4 3.6-.1 2-1.7 3.4-3.7 3.3-1.9-.1-3.4-1.6-3.3-3.5.1-2 1.6-3.5 3.6-3.4Z" fill="currentColor"/></svg>
+<span class="logo__word">bampa</span></a>
+      <nav class="footer__links" aria-label="Pages">
+        <a href="droni.html">Drones</a>
+        <a href="ai.html">Local AI</a>
+        <a href="index.html#su-misura">Custom</a>
+        <a href="investitori.html">Investors</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="footer__legal">© 2026 bampa · Bolzano · Auronzo di Cadore · <a href="mailto:info@bampa.it">info@bampa.it</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

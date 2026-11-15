@@ -1,0 +1,39 @@
+# bampa.net su Aruba Hosting Linux (Apache).
+# Si copia in dist/ con il sito e si carica insieme.
+
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+Options -Indexes
+
+# tipi che Apache non sempre conosce
+AddType model/gltf-binary .glb
+AddType font/woff2 .woff2
+AddType image/svg+xml .svg
+AddType text/javascript .js
+
+# compressione: il modello 3D passa da 1.5 a 0.6 MB
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml application/xml text/xml model/gltf-binary
+</IfModule>
+
+# cache: le pagine si ricontrollano sempre; script, stili e modello hanno la
+# versione nell'indirizzo (?v=...), quindi possono restare a lungo
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "\.(glb|woff2|png|svg)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# HTTPS: togliere i # SOLO DOPO aver attivato il certificato SSL nel pannello
+# Aruba (altrimenti il sito non si apre più)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

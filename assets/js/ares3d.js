@@ -652,8 +652,13 @@ async function apriEsplora() {
     controlli.enableDamping = true;
     controlli.dampingFactor = 0.08;
     controlli.target.set(0, S.altezza, 0);
-    controlli.minDistance = S.raggio * 0.6;
-    controlli.maxDistance = S.raggio * 9;
+    // zoom: la libreria avvicina del 2.4% per scatto di rotella in Firefox (5% in
+    // Chrome), e dal più lontano al più vicino servivano più di 100 scatti.
+    // Con zoomSpeed 3 bastano una trentina; e si zooma verso il puntatore.
+    controlli.zoomSpeed = 3;
+    controlli.zoomToCursor = true;
+    controlli.minDistance = S.raggio * 0.45;
+    controlli.maxDistance = S.raggio * 6;
     controlli.maxPolarAngle = Math.PI * 0.55;     // non si va sotto il pavimento
     controlli.autoRotate = !ridotto;
     controlli.autoRotateSpeed = 0.8;
@@ -668,6 +673,26 @@ async function apriEsplora() {
     iniziale();
 
     const stato = { tilt: 90, meta: 90, xray: 0, metaX: 0, anima: false, tempo: 0 };
+    if (DEBUG) {
+      window.__esplora = { S, controlli };
+      // misura: ms per fotogramma con la camera a varie distanze (frazioni di quella iniziale)
+      window.__bench = (fattori = [1, 0.6, 0.35, 0.2], n = 20) => {
+        const gl = S.renderer.getContext(), px = new Uint8Array(4), fuori = {};
+        const dir = S.camera.position.clone().sub(controlli.target);
+        const d0 = dir.length(); dir.normalize();
+        for (const f of fattori) {
+          S.camera.position.copy(controlli.target).addScaledVector(dir, d0 * f);
+          S.camera.lookAt(controlli.target);
+          S.renderer.render(S.scena, S.camera); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+          const t = performance.now();
+          for (let i = 0; i < n; i++) { S.renderer.render(S.scena, S.camera); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); }
+          fuori[f] = +((performance.now() - t) / n).toFixed(1);
+        }
+        S.camera.position.copy(controlli.target).addScaledVector(dir, d0);
+        return { ms_per_fotogramma: fuori, pixel: [S.renderer.domElement.width, S.renderer.domElement.height], rapporto: S.renderer.getPixelRatio() };
+      };
+      if (location.search.includes('bench')) setTimeout(() => { const r = window.__bench(); document.body.dataset.bench = JSON.stringify(r); navigator.sendBeacon('/_tempi', JSON.stringify({ bench: r, larghezza: innerWidth })); }, 1500);
+    }
     S.imposta({ tilt: stato.tilt, xray: 0, lift: 0 });     // i rotori nella posa indicata, da subito
     const cursore = dialogo.querySelector('[data-tilt]');
     const etichetta = dialogo.querySelector('[data-tlbl]');

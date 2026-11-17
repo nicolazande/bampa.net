@@ -121,7 +121,7 @@ if (preferito) {
 
 document.querySelectorAll('[data-form]').forEach((form) => {
   const msg = form.querySelector('[data-form-msg]');
-  const posta = document.querySelector('[data-mail]')?.textContent.trim() || 'info@bampa.it';
+  const posta = document.querySelector('[data-mail]')?.textContent.trim() || 'info@bampa.net';
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let ok = true;

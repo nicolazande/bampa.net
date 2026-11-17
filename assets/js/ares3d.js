@@ -663,6 +663,16 @@ async function apriEsplora() {
     // Con zoomSpeed 3 bastano una trentina; e si zooma verso il puntatore.
     controlli.zoomSpeed = 3;
     controlli.zoomToCursor = true;
+    // ⚠️ col pizzico su telefono no: la libreria passa allo zoom-verso-il-punto il
+    // centro delle dita in coordinate della PAGINA (pageX/pageY) e lo confronta col
+    // canvas in coordinate della FINESTRA. Il visore si apre a metà di droni.html,
+    // con la pagina scorsa: il punto finiva fuori schermo, la camera ci volava
+    // dietro e il drone spariva. E il rapporto fra le dita lo eleva alla zoomSpeed:
+    // con 3, allargarle di 2.5 volte avvicinava di 15. Col tocco quindi lo zoom va
+    // verso il centro del drone e segue le dita; mouse e rotella restano così.
+    const zoomMouse = (si) => { controlli.zoomToCursor = si; controlli.zoomSpeed = si ? 3 : 1; };
+    canvas.addEventListener('pointerdown', (e) => zoomMouse(e.pointerType !== 'touch'), { capture: true });
+    canvas.addEventListener('wheel', () => zoomMouse(true), { capture: true, passive: true });
     controlli.minDistance = S.raggio * 0.45;
     controlli.maxDistance = S.raggio * 6;
     controlli.maxPolarAngle = Math.PI * 0.55;     // non si va sotto il pavimento
